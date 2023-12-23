@@ -18,7 +18,7 @@ class ProductController extends Controller
     }
     public function index()
     {
-        $products=Product::all();
+        $products=Product::with("variants")->paginate(10);
         // Gate::authorize('view',$products[0]);
         $products=ProductResource::collection($products);
         return $products;
